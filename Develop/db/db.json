@@ -1,6 +1,22 @@
 [
     {
-        "title":"Test Title Wesley",
-        "text":"Test text Palov"
+        "title": "Monday",
+        "text": "Shopping, car wash.",
+        "id": "4da9"
+    },
+    {
+        "title": "Tuesday",
+        "text": "Bank, doctor visit",
+        "id": "0543"
+    },
+    {
+        "title": "Wednesday ",
+        "text": "Laundry, pay bills",
+        "id": "0611"
+    },
+    {
+        "title": "Thursday ",
+        "text": "Buy soap and paper towels.",
+        "id": "4f85"
     }
 ]

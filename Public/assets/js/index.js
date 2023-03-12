@@ -4,7 +4,7 @@ let saveNoteBtn;
 let newNoteBtn;
 let noteList;
 
-if (window.location.pathname === '/krylov') {
+if (window.location.pathname === '/notes') {
   noteTitle = document.querySelector('.note-title');
   noteText = document.querySelector('.note-textarea');
   saveNoteBtn = document.querySelector('.save-note');
@@ -41,15 +41,17 @@ const saveNote = (note) =>
     },
     body: JSON.stringify(note),
   });
-
+  
 const deleteNote = (id) =>
-  fetch(`/api/db/${id}`, {
-    method: 'DELETE',
-    headers: {
+  fetch(`/api/db/id/${id}`, 
+   {
+      method: 'DELETE',
+       headers: {
       'Content-Type': 'application/json',
     },
+    
   });
-
+ 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
 
@@ -88,7 +90,7 @@ const handleNoteDelete = (e) => {
   if (activeNote.id === noteId) {
     activeNote = {};
   }
-
+console.log(noteId)
   deleteNote(noteId).then(() => {
     getAndRenderNotes();
     renderActiveNote();
@@ -99,6 +101,7 @@ const handleNoteDelete = (e) => {
 const handleNoteView = (e) => {
   e.preventDefault();
   activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
+  console.log(activeNote)
   renderActiveNote();
 };
 
@@ -119,6 +122,7 @@ const handleRenderSaveBtn = () => {
 // Render the list of note titles
 const renderNoteList = async (notes) => {
   let jsonNotes = await notes.json();
+  console.log(jsonNotes);
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
@@ -150,7 +154,7 @@ const renderNoteList = async (notes) => {
 
       liEl.append(delBtnEl);
     }
-
+console.log(liEl)
     return liEl;
   };
 
@@ -161,11 +165,12 @@ const renderNoteList = async (notes) => {
   jsonNotes.forEach((note) => {
     const li = createLi(note.title);
     li.dataset.note = JSON.stringify(note);
-
+    
     noteListItems.push(li);
   });
-
+  
   if (window.location.pathname === '/notes') {
+    console.log(noteList)
     noteListItems.forEach((note) => noteList[0].append(note));
   }
 };
