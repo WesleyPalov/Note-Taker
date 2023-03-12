@@ -53,3 +53,9 @@ The following API routes are created:
 - `DELETE /api/notes/:id` receives a query parameter that contains the id of a note to delete. To delete a note, you'll need to read all notes from the `db.json` file, remove the note with the given `id` property, and then rewrite the notes to the `db.json` file.
 
 ## Screenshots
+![Capturenote](https://user-images.githubusercontent.com/122843028/224572856-2c492fd7-99f4-4d19-8168-56b673883791.PNG)
+![Capturenote2](https://user-images.githubusercontent.com/122843028/224572882-a12c12ed-5ac1-4465-baa2-68ba7ffe263b.PNG)
+![Capturenote3](https://user-images.githubusercontent.com/122843028/224572908-6712b801-aa1a-4542-a731-10694c0c2658.PNG)
+
+
+
