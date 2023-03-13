@@ -18,12 +18,12 @@ app.use(express.static('public'));
 // We can send a body parameter to the client using the res.send() method. This body parameter can be a string, buffer, or even an array.
  //GET Route for homepage
 app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/index.html'))
+  res.sendFile(path.join(__dirname, './public/index.html'))
 );
 
 // GET Route for note taker page
 app.get('/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/pages/notes.html'))
+  res.sendFile(path.join(__dirname, './public/pages/notes.html'))
 );
 
 // Promise version of fs.readFile
