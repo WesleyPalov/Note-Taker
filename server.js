@@ -8,7 +8,7 @@ const util = require('util');
 const uuid = require('./Develop/uuid');
 
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const app = express();
 // Middleware for parsing JSON and urlencoded form data
 app.use(express.json());
