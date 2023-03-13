@@ -23,7 +23,7 @@ app.get('/', (req, res) =>
 
 // GET Route for note taker page
 app.get('/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, './public/pages/notes.html'))
+  res.sendFile(path.join(__dirname, './public/notes.html'))
 );
 
 // Promise version of fs.readFile
