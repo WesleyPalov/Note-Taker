@@ -4,6 +4,7 @@ const fs = require('fs');
 // Helper method for generating unique ids
 const uuid = require('../uuid');
 
+
 const util = require('util');
 // Promise version of fs.readFile
 const readFromFile = util.promisify(fs.readFile);
@@ -52,7 +53,12 @@ const readAndAppend = (content, file) => {
 //http://localhost:3001/api/notes
 router.get('/', (req, res) => {
     console.info(`${req.method} request received`);
-    readFromFile(database).then((data) => res.json(JSON.parse(data)));
+  //  console.log(database)
+readFromFile(JSON.stringify(database), "utf8").then((data)=>console.log(data)    )
+
+
+
+ //readFromFile(database).then((data) => res.json(JSON.parse(data)));
   });
   
   // POST Route for a new note
