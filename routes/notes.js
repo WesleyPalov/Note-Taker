@@ -45,24 +45,29 @@ const readAndAppend = (content, file) => {
 
 
 
-
-
-
-
 // GET Route for retrieving all the notes
 //http://localhost:3001/api/notes
-router.get('/', (req, res) => {
-    console.info(`${req.method} request received`);
-  //  console.log(database)
-readFromFile(JSON.stringify(database), "utf8").then((data)=>console.log(data)    )
 
 
-
- //readFromFile(database).then((data) => res.json(JSON.parse(data)));
+  const read = () => {
+    return readFromFile("db/db.json", "utf8");
+  };
+  // GET Route for retrieving all the notes
+  //http://localhost:3001/api/notes
+  router.get("/", (req, res) => {
+    return read()
+      .then((notes) => {
+        let savedNotes = JSON.parse(notes);
+        return res.json(savedNotes);
+      })
+      .catch((err) => res.json(err));
   });
-  
+
+
+
+
   // POST Route for a new note
-  router.post('/', (req, res) => {
+  router.post("/", (req, res) => {
     console.info(`${req.method} request received to add a note`);
   
     const { title, text } = req.body;
@@ -74,7 +79,7 @@ readFromFile(JSON.stringify(database), "utf8").then((data)=>console.log(data)   
        id: uuid(),
       };
   
-      readAndAppend(newNote, database);
+      readAndAppend(newNote, "db/db.json");
       res.json(`Note added successfully 🚀`);
     } else {
       res.error('Error in adding tip');
@@ -84,14 +89,14 @@ readFromFile(JSON.stringify(database), "utf8").then((data)=>console.log(data)   
   // DELETE Route for a specific note
   router.delete('/id/:id', (req, res) => {
     const noteId = req.params.id;
-    readFromFile(database)
+    readFromFile("db/db.json")
       .then((data) => JSON.parse(data))
       .then((json) => {
         // Make a new array of all tips except the one with the ID provided in the URL
         const result = json.filter((text) => text.id !== noteId);
   
         // Save that array to the filesystem
-        writeToFile(database, result);
+        writeToFile("db/db.json", result);
   
         // Respond to the DELETE request
         res.json(`Item ${noteId} has been deleted 🗑️`);
